@@ -38,7 +38,6 @@ export const Shop = () => {
       <div className="flex flex-col md:flex-row w-full">
         {/* Left: Categories */}
         <div className="w-full md:w-[30%] md:min-h-screen md:border-r md:border-gray-100 px-4 md:px-6 pt-4 mb-6 md:mb-0">
-          <h3 className="hidden md:block font-serif font-bold text-[22px] mb-6 uppercase tracking-widest text-slate-900">Categories</h3>
           <ul className="flex flex-row flex-wrap gap-x-4 gap-y-2 pb-2 md:flex-col md:flex-nowrap md:space-y-4">
             {categories.map(cat => (
               <li key={cat} className="flex-shrink-0 md:flex-shrink">
