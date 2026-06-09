@@ -17,14 +17,14 @@ export const ProductCard = ({ product }) => {
           </button>
         </div>
       </div>
-      <div className="flex justify-between items-start">
+      <div className="flex justify-between items-start gap-2">
         <div>
-          <h3 className="text-[20px] font-medium text-slate-900 group-hover:text-slate-600 transition-colors">
+          <h3 className="text-[13px] md:text-[20px] font-medium text-slate-900 group-hover:text-slate-600 transition-colors line-clamp-2">
             {product.name}
           </h3>
-          <p className="mt-1 text-[17px] text-gray-500">{product.category}</p>
+          <p className="mt-1 text-[11px] md:text-[17px] text-gray-500">{product.category}</p>
         </div>
-        <p className="text-[20px] font-semibold text-slate-900">${product.price}</p>
+        <p className="text-[13px] md:text-[20px] font-semibold text-slate-900">${product.price}</p>
       </div>
     </Link>
   );

@@ -24,7 +24,7 @@ export const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-      <div className="relative flex items-center justify-between h-20 w-full px-4 sm:px-6 lg:px-8">
+      <div className="relative flex items-center justify-between h-14 md:h-20 w-full px-4 sm:px-6 lg:px-8">
         
         {/* Left: Nav Links */}
         <div className="hidden md:flex space-x-8 items-center">
@@ -40,12 +40,12 @@ export const Navbar = () => {
         </div>
 
         {/* Center: Logo (absolute) */}
-        <Link to="/" className="absolute left-1/2 transform -translate-x-1/2 text-[36px] font-serif font-bold tracking-[0.3em] text-slate-900">
+        <Link to="/" className="absolute left-1/2 transform -translate-x-1/2 text-[20px] md:text-[36px] font-serif font-bold tracking-[0.3em] text-slate-900">
           MANTRA
         </Link>
 
         {/* Right: Actions */}
-        <div className="flex items-center space-x-6">
+        <div className="flex items-center space-x-3 md:space-x-6">
             {/* Search */}
             <div className="relative flex items-center justify-center">
               {!isSearchOpen ? (
@@ -54,7 +54,7 @@ export const Navbar = () => {
                   className="flex items-center justify-center text-slate-500 hover:text-slate-900"
                   aria-label="Open search"
                 >
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                  <svg className="w-5 h-5 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                 </button>
               ) : (
                 <input
@@ -76,7 +76,7 @@ export const Navbar = () => {
 
             {/* Cart */}
             <Link to="/cart" className="relative flex items-center justify-center text-slate-500 hover:text-slate-900 group">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+              <svg className="w-5 h-5 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
               {cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-slate-900 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">
                   {cartCount}
@@ -87,7 +87,7 @@ export const Navbar = () => {
 
             {/* Mobile Menu Button */}
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-slate-500">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMenuOpen ? (
                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 ) : (
