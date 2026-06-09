@@ -39,12 +39,12 @@ export const Shop = () => {
         {/* Left: Categories */}
         <div className="w-full md:w-[30%] md:min-h-screen md:border-r md:border-gray-100 px-4 md:px-6 pt-4 mb-6 md:mb-0">
           <h3 className="font-serif font-bold text-[22px] mb-6 uppercase tracking-widest text-slate-900">Categories</h3>
-          <ul className="flex flex-row overflow-x-auto gap-6 pb-2 md:flex-col md:space-y-4 md:overflow-x-visible">
+          <ul className="flex flex-row flex-wrap gap-x-4 gap-y-2 pb-2 md:flex-col md:flex-nowrap md:space-y-4">
             {categories.map(cat => (
               <li key={cat} className="flex-shrink-0 md:flex-shrink">
                 <button
                   onClick={() => setActiveCategory(cat)}
-                  className={`flex-shrink-0 uppercase tracking-widest text-[11px] md:text-[16px] pb-1 whitespace-nowrap
+                  className={`flex-shrink-0 uppercase tracking-widest text-[10px] md:text-[16px] pb-1 whitespace-nowrap
                     ${activeCategory === cat ? 'border-b-2 border-black text-black font-semibold' : 'text-gray-400 hover:text-black hover:border-b-2 hover:border-gray-400'} transition-all duration-200`}
                 >
                   {cat}
