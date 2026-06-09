@@ -7,10 +7,7 @@ export const StoreProvider = ({ children }) => {
   // Products State
   const [products, setProducts] = useState(() => {
     try {
-      const saved = localStorage.getItem('products');
-      if (!saved) return INITIAL_PRODUCTS;
-      const parsed = JSON.parse(saved);
-      return Array.isArray(parsed) ? parsed : INITIAL_PRODUCTS;
+      return INITIAL_PRODUCTS;
     } catch (e) {
       console.error("Failed to load products from localStorage", e);
       return INITIAL_PRODUCTS;
