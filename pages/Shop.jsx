@@ -35,9 +35,9 @@ export const Shop = () => {
       <h1 className="text-[36px] md:text-[42px] font-serif font-bold text-slate-900 px-6 pt-8 pb-4">Shop All</h1>
 
       {/* Main Content Area */}
-      <div className="flex flex-row w-full">
+      <div className="flex flex-col md:flex-row w-full">
         {/* Left: Categories */}
-        <div className="w-[30%] min-h-screen border-r border-gray-100 px-6 pt-4">
+        <div className="w-full md:w-[30%] md:min-h-screen md:border-r md:border-gray-100 px-4 md:px-6 pt-4">
           <h3 className="font-serif font-bold text-[22px] mb-6 uppercase tracking-widest text-slate-900">Categories</h3>
           <ul className="flex flex-row overflow-x-auto gap-6 pb-2 md:flex-col md:space-y-4 md:overflow-x-visible">
             {categories.map(cat => (
@@ -55,9 +55,9 @@ export const Shop = () => {
         </div>
 
         {/* Right: Product Grid */}
-        <div className="w-[70%] px-4 pt-4">
+        <div className="w-full md:w-[70%] px-4 pt-4">
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4">
+            <div className="grid grid-cols-2 gap-2 md:gap-4 md:grid-cols-2 lg:grid-cols-3">
               {filteredProducts.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}
