@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useStore } from '../contexts/StoreContext';
+import { useAuth } from '../contexts/AuthContext';
 import { Category } from '../types';
 import { generateProductDescription } from '../services/geminiService';
 import { Navigate } from 'react-router-dom';
 
 export const Admin = () => {
-  const { user, products, addProduct, deleteProduct } = useStore();
+  const { user } = useAuth();
+  const { products, addProduct, deleteProduct } = useStore();
   const [isGenerating, setIsGenerating] = useState(false);
   
   const [newProduct, setNewProduct] = useState({

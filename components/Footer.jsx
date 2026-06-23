@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export const Footer = () => {
   return (
     <footer className="bg-slate-900 text-white pt-12 pb-8">
@@ -13,19 +15,41 @@ export const Footer = () => {
           <div>
             <h4 className="font-bold text-[15px] md:text-[22px] mb-6">Shop</h4>
             <ul className="space-y-4 text-gray-400">
-              <li><a href="#" className="text-[13px] md:text-[18px] hover:text-white transition">New Arrivals</a></li>
-              <li><a href="#" className="text-[13px] md:text-[18px] hover:text-white transition">Best Sellers</a></li>
-              <li><a href="#" className="text-[13px] md:text-[18px] hover:text-white transition">Accessories</a></li>
-              <li><a href="#" className="text-[13px] md:text-[18px] hover:text-white transition">Sale</a></li>
+              <li>
+                <Link to="/shop?sort=newest" className="text-[13px] md:text-[18px] hover:text-white transition">
+                  New Arrivals
+                </Link>
+              </li>
+              <li>
+                <Link to="/returns-exchanges" className="text-[13px] md:text-[18px] hover:text-white transition">
+                  Returns & Exchanges
+                </Link>
+              </li>
+              <li>
+                <Link to="/payment-guide" className="text-[13px] md:text-[18px] hover:text-white transition">
+                  Payment Guide
+                </Link>
+              </li>
             </ul>
           </div>
           <div>
             <h4 className="font-bold text-[15px] md:text-[22px] mb-6">Support</h4>
             <ul className="space-y-4 text-gray-400">
-              <li><a href="#" className="text-[13px] md:text-[18px] hover:text-white transition">Contact Us</a></li>
-              <li><a href="#" className="text-[13px] md:text-[18px] hover:text-white transition">Shipping & Returns</a></li>
-              <li><a href="#" className="text-[13px] md:text-[18px] hover:text-white transition">Size Guide</a></li>
-              <li><a href="#" className="text-[13px] md:text-[18px] hover:text-white transition">FAQ</a></li>
+              <li>
+                <Link to="/contact" className="text-gray-400 text-[13px] md:text-[18px] hover:text-white transition">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/delivery-and-orders" className="text-gray-400 text-[13px] md:text-[18px] hover:text-white transition">
+                  Delivery & Orders
+                </Link>
+              </li>
+              <li>
+                <Link to="/size-guide" className="text-gray-400 text-[13px] md:text-[18px] hover:text-white transition">
+                  Size Guide
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

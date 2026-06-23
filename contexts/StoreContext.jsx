@@ -9,8 +9,8 @@ export const StoreProvider = ({ children }) => {
     try {
       return INITIAL_PRODUCTS;
     } catch (e) {
-      console.error("Failed to load products from localStorage", e);
-      return INITIAL_PRODUCTS;
+      console.error("Failed to load products from constants", e);
+      return [];
     }
   });
 
@@ -27,49 +27,33 @@ export const StoreProvider = ({ children }) => {
     }
   });
 
-  // User State
-  const [user, setUser] = useState(() => {
-    try {
-      const saved = localStorage.getItem('user');
-      if (!saved) return null;
-      const parsed = JSON.parse(saved);
-      return (parsed && typeof parsed === 'object' && 'email' in parsed) ? parsed : null;
-    } catch (e) {
-      console.error("Failed to load user from localStorage", e);
-      return null;
-    }
-  });
-
   // Persistence
-  useEffect(() => localStorage.setItem('products', JSON.stringify(products)), [products]);
   useEffect(() => localStorage.setItem('cart', JSON.stringify(cart)), [cart]);
-  useEffect(() => {
-    if (user) localStorage.setItem('user', JSON.stringify(user));
-    else localStorage.removeItem('user');
-  }, [user]);
 
   // Actions
-  const addToCart = (product, size) => {
+  const addToCart = (product, size, color = '', qty = 1) => {
     setCart(prev => {
-      const existing = prev.find(item => item.id === product.id && item.selectedSize === size);
+      const existing = prev.find(
+        item => item.id === product.id && item.selectedSize === size && item.selectedColor === color
+      );
       if (existing) {
         return prev.map(item => 
-          item.id === product.id && item.selectedSize === size 
-            ? { ...item, quantity: item.quantity + 1 } 
+          item.id === product.id && item.selectedSize === size && item.selectedColor === color
+            ? { ...item, quantity: item.quantity + qty } 
             : item
         );
       }
-      return [...prev, { ...product, selectedSize: size, quantity: 1 }];
+      return [...prev, { ...product, selectedSize: size, selectedColor: color, quantity: qty }];
     });
   };
 
-  const removeFromCart = (productId, size) => {
-    setCart(prev => prev.filter(item => !(item.id === productId && item.selectedSize === size)));
+  const removeFromCart = (productId, size, color = '') => {
+    setCart(prev => prev.filter(item => !(item.id === productId && item.selectedSize === size && item.selectedColor === color)));
   };
 
-  const updateQuantity = (productId, size, delta) => {
+  const updateQuantity = (productId, size, delta, color = '') => {
     setCart(prev => prev.map(item => {
-      if (item.id === productId && item.selectedSize === size) {
+      if (item.id === productId && item.selectedSize === size && item.selectedColor === color) {
         const newQty = Math.max(1, item.quantity + delta);
         return { ...item, quantity: newQty };
       }
@@ -77,11 +61,9 @@ export const StoreProvider = ({ children }) => {
     }));
   };
 
-  const login = (email, isAdmin) => {
-    setUser({ email, isAdmin, name: email.split('@')[0] });
+  const clearCart = () => {
+    setCart([]);
   };
-
-  const logout = () => setUser(null);
 
   const addProduct = (product) => {
     setProducts(prev => [product, ...prev]);
@@ -95,9 +77,9 @@ export const StoreProvider = ({ children }) => {
 
   return (
     <StoreContext.Provider value={{ 
-      products, cart, user, 
-      addToCart, removeFromCart, updateQuantity, 
-      login, logout, addProduct, deleteProduct,
+      products, cart,
+      addToCart, removeFromCart, updateQuantity, clearCart,
+      addProduct, deleteProduct,
       cartTotal 
     }}>
       {children}

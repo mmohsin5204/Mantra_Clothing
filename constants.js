@@ -9,6 +9,7 @@ export const INITIAL_PRODUCTS = [
     image: 'https://i.pinimg.com/1200x/0e/ca/bc/0ecabcf9d3bbd446a68a4730a968724d.jpg',
     description: 'A timeless staple for every wardrobe. This Oxford shirt features premium cotton construction and a tailored fit.',
     sizes: ['S', 'M', 'L', 'XL'],
+    colors: ['White', 'Blue', 'Black', 'Pink'],
     featured: true,
   },
   {
@@ -19,6 +20,7 @@ export const INITIAL_PRODUCTS = [
     image: 'https://i.pinimg.com/1200x/c1/40/95/c14095a7b49771bc1b9cbac00294946d.jpg',
     description: 'Japanese denim with a modern slim cut. Durable, stylish, and built to last.',
     sizes: ['30', '32', '34', '36'],
+    colors: ['Indigo', 'Black'],
     featured: true,
   },
   {
@@ -29,6 +31,7 @@ export const INITIAL_PRODUCTS = [
     image: 'https://i.pinimg.com/webp/736x/92/c0/d8/92c0d8b0b728bf4a9d60a72e0d1ed608.webp',
     description: 'Sleek midnight blue bomber jacket. Water-resistant outer shell with a comfortable lining.',
     sizes: ['M', 'L', 'XL'],
+    colors: ['Midnight Blue', 'Black'],
     featured: true,
   },
   {
@@ -39,6 +42,7 @@ export const INITIAL_PRODUCTS = [
     image: 'https://i.pinimg.com/1200x/72/43/09/724309b8a9fd1274dd298db4e308895a.jpg',
     description: 'Handcrafted leather boots that elevate any outfit. Features a durable rubber sole.',
     sizes: ['8', '9', '10', '11', '12'],
+    colors: ['Brown', 'Black'],
   },
   {
     id: '5',
@@ -48,6 +52,7 @@ export const INITIAL_PRODUCTS = [
     image: 'https://i.pinimg.com/webp/1200x/f6/97/c9/f697c9fbd6fba70ad4998688eca65aea.webp',
     description: 'Charcoal grey wool blend suit. Perfect for formal occasions and business settings.',
     sizes: ['38R', '40R', '42R', '44R'],
+    colors: ['Charcoal', 'Navy', 'Black'],
     featured: true,
   },
   {
@@ -67,6 +72,7 @@ export const INITIAL_PRODUCTS = [
     image: 'https://i.pinimg.com/webp/1200x/fb/56/47/fb5647d30a5be1a95c629eeb3bcb5fbe.webp',
     description: 'Breathable linen shirt perfect for hot summer days.',
     sizes: ['S', 'M', 'L', 'XL'],
+    colors: ['White', 'Beige', 'Light Blue'],
   },
    {
     id: '8',
@@ -76,5 +82,45 @@ export const INITIAL_PRODUCTS = [
     image: 'https://i.pinimg.com/1200x/16/38/ba/1638ba41b3a0932848c448b0c2912640.jpg',
     description: 'Vintage wash denim jacket with light distressing for a lived-in look.',
     sizes: ['S', 'M', 'L', 'XL'],
+  },
+  {
+    id: '9',
+    name: 'Chino Trousers',
+    category: Category.JEANS,
+    price: 95,
+    image: 'https://i.pinimg.com/736x/cb/66/a2/cb66a255d7d44a7b2fa28f39c7ef05be.jpg',
+    description: 'Classic chino trousers in a tailored fit. Perfect for both casual and semi-formal wear.',
+    sizes: ['30', '32', '34', '36'],
+    colors: ['Khaki', 'Navy', 'Black'],
+  },
+  {
+    id: '10',
+    name: 'Leather Belt',
+    category: Category.ACCESSORIES,
+    price: 55,
+    image: 'https://i.pinimg.com/1200x/2b/27/43/2b2743e7df17359ac2e0d38e5ef4e313.jpg',
+    description: 'Genuine leather belt with a polished buckle. Adds a touch of elegance to any outfit.',
+    sizes: ['32', '34', '36', '38', '40'],
+    colors: ['Brown', 'Black'],
+  },
+  {
+    id: '11',
+    name: 'Merino Wool Sweater',
+    category: Category.JACKETS,
+    price: 135,
+    image: 'https://i.pinimg.com/1200x/6d/ac/d3/6dacd3a23eb6cef085427413e2d130a3.jpg',
+    description: 'Premium merino wool sweater. Soft, warm, and breathable for year-round comfort.',
+    sizes: ['S', 'M', 'L', 'XL'],
+    colors: ['Cream', 'Navy', 'Charcoal', 'Burgundy'],
+  },
+  {
+    id: '12',
+    name: 'Formal Dress Shoes',
+    category: Category.SHOES,
+    price: 195,
+    image: 'https://i.pinimg.com/1200x/b3/94/6c/b3946cde2ef108d9fed4fa7005c8534d.jpg',
+    description: 'Classic Oxford dress shoes. Crafted from premium leather with a leather sole.',
+    sizes: ['8', '9', '10', '11', '12'],
+    colors: ['Black', 'Brown'],
   },
 ];

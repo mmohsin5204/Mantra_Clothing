@@ -1,9 +1,12 @@
 import { useState, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useStore } from '../contexts/StoreContext';
+import { useWishlist } from '../contexts/WishlistContext';
+import { useAuth } from '../contexts/AuthContext';
 
 export const Navbar = () => {
-  const { cart, user, logout } = useStore();
+  const { cart } = useStore();
+  const { user, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -12,6 +15,8 @@ export const Navbar = () => {
   const searchInputRef = useRef(null);
 
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const { wishlist } = useWishlist();
+  const wishlistCount = wishlist.length;
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -63,11 +68,15 @@ export const Navbar = () => {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
-                      navigate(`/shop?search=${encodeURIComponent(searchQuery)}`);
+                      if (searchQuery.trim()) {
+                        navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
+                      }
                       setIsSearchOpen(false);
                     }
                   }}
-                  onBlur={() => setIsSearchOpen(false)}
+                  onBlur={() => {
+                    setTimeout(() => setIsSearchOpen(false), 150);
+                  }}
                   placeholder="Search products"
                   className="bg-transparent border-0 border-b border-black focus:outline-none w-48 text-sm"
                 />
@@ -75,6 +84,15 @@ export const Navbar = () => {
             </div>
 
             {/* Cart */}
+            {/* Wishlist */}
+            <Link to="/wishlist" className="relative flex items-center justify-center text-slate-500 hover:text-slate-900 group">
+              <svg className="w-5 h-5 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+              {wishlistCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
             <Link to="/cart" className="relative flex items-center justify-center text-slate-500 hover:text-slate-900 group">
               <svg className="w-5 h-5 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
               {cartCount > 0 && (
@@ -84,6 +102,24 @@ export const Navbar = () => {
               )}
             </Link>
 
+            {user ? (
+              <div className="hidden md:flex items-center space-x-4">
+                <span className="text-sm text-slate-500">{user.name}</span>
+                <button
+                  onClick={logout}
+                  className="text-sm font-medium text-slate-500 hover:text-red-600"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="hidden md:block text-sm font-medium text-slate-500 hover:text-slate-900"
+              >
+                Login
+              </Link>
+            )}
 
             {/* Mobile Menu Button */}
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-slate-500">
@@ -112,6 +148,25 @@ export const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            {user ? (
+              <>
+                <div className="px-3 py-2 text-sm text-slate-900">Hello, {user.name}</div>
+                <button
+                  onClick={() => { logout(); setIsMenuOpen(false); }}
+                  className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-red-50"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/login"
+                onClick={() => setIsMenuOpen(false)}
+                className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-gray-50"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       )}

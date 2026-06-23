@@ -25,7 +25,7 @@ export const Cart: React.FC = () => {
         {/* Cart Items */}
         <div className="lg:col-span-2 space-y-8">
           {cart.map((item) => (
-            <div key={`${item.id}-${item.selectedSize}`} className="flex gap-6 py-6 border-b border-gray-100 last:border-0">
+            <div key={`${item.id}-${item.selectedSize}-${item.selectedColor}`} className="flex gap-6 py-6 border-b border-gray-100 last:border-0">
               <div className="w-24 h-32 flex-shrink-0 bg-gray-100 overflow-hidden">
                 <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
               </div>
@@ -37,6 +37,7 @@ export const Cart: React.FC = () => {
                   </div>
                   <p className="text-sm text-gray-500 mb-1">{item.category}</p>
                   <p className="text-sm text-gray-500">Size: {item.selectedSize}</p>
+                  {item.selectedColor && <p className="text-sm text-gray-500">Color: {item.selectedColor}</p>}
                 </div>
                 
                 <div className="flex justify-between items-end">

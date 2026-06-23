@@ -1,9 +1,26 @@
 import { Link } from 'react-router-dom';
+import { useWishlist } from '../contexts/WishlistContext';
 
 export const ProductCard = ({ product }) => {
+  const { wishlist, toggleWishlist } = useWishlist();
+  const isInWishlist = wishlist.includes(product.id);
   return (
     <Link to={`/product/${product.id}`} className="group block">
       <div className="relative aspect-[3/4] overflow-hidden bg-gray-200 rounded-sm mb-4">
+        <button
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWishlist(product.id); }}
+          aria-label={isInWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
+          className="absolute top-2 right-2 z-20 p-2 rounded-full bg-white/80 hover:bg-white"
+        >
+          <svg
+            className={`w-5 h-5 ${isInWishlist ? 'fill-red-500 text-red-500' : 'text-slate-900'}`}
+            fill={isInWishlist ? 'currentColor' : 'none'}
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
+        </button>
         <img
           src={product.image}
           alt={product.name}
